@@ -1,30 +1,28 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { AboutSection } from "./AboutSection";
 import { ContactSection } from "./ContactSection";
 import { HeroSection } from "./HeroSection";
 import { Navbar } from "./Navbar";
 import { PracticeAreasSection } from "./PracticeAreasSection";
 import { FooterSection } from "./FooterSection";
-import { defaultLocale, landingContent } from "./content";
+import { landingContent } from "./content";
 import type { Locale } from "./types";
 
-const LOCALE_STORAGE_KEY = "landing-locale";
+interface LawFirmLandingPageProps {
+  locale: Locale;
+}
 
-export function LawFirmLandingPage() {
-  const [locale, setLocale] = useState<Locale>(defaultLocale);
-
-  useEffect(() => {
-    const storedLocale = window.localStorage.getItem(LOCALE_STORAGE_KEY);
-    if (storedLocale === "nl" || storedLocale === "en") {
-      setLocale(storedLocale);
-    }
-  }, []);
+export function LawFirmLandingPage({ locale }: LawFirmLandingPageProps) {
+  const router = useRouter();
 
   function handleLocaleChange(nextLocale: Locale) {
-    setLocale(nextLocale);
-    window.localStorage.setItem(LOCALE_STORAGE_KEY, nextLocale);
+    if (nextLocale === locale) {
+      return;
+    }
+
+    router.push(nextLocale === "en" ? "/en" : "/");
   }
 
   const content = landingContent[locale];
