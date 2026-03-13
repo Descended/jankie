@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { CircleFlag } from "react-circle-flags";
 import type { Locale, NavbarContent } from "./types";
 
 interface NavbarProps {
@@ -38,10 +39,10 @@ export function Navbar({ content, locale, onLocaleChange }: NavbarProps) {
             AJ
           </span>
           <span>
-            <span className="block text-base font-bold tracking-tight text-red-900">
+            <span className="block text-base font-extrabold leading-tight tracking-tight text-red-900">
               {content.brandName}
             </span>
-            <span className="block text-xs font-medium text-red-700">{content.brandTagline}</span>
+            <span className="block text-xs font-medium leading-tight text-red-700/90">{content.brandTagline}</span>
           </span>
         </a>
 
@@ -59,35 +60,12 @@ export function Navbar({ content, locale, onLocaleChange }: NavbarProps) {
               />
             </a>
           ))}
-          <div className="inline-flex items-center rounded-full border border-red-200 bg-white p-1 text-xs font-semibold shadow-sm">
-            <span className="px-2 text-red-700">{content.languageLabel}</span>
-            <button
-              type="button"
-              className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 transition ${
-                locale === "nl"
-                  ? "bg-red-700 text-white"
-                  : "text-red-800 hover:bg-red-50"
-              }`}
-              onClick={() => onLocaleChange("nl")}
-              aria-label="Switch language to Dutch"
-            >
-              <FlagNlIcon className="h-3.5 w-5 rounded-[2px]" />
-              <span>NL</span>
-            </button>
-            <button
-              type="button"
-              className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 transition ${
-                locale === "en"
-                  ? "bg-red-700 text-white"
-                  : "text-red-800 hover:bg-red-50"
-              }`}
-              onClick={() => onLocaleChange("en")}
-              aria-label="Switch language to English"
-            >
-              <FlagUkIcon className="h-3.5 w-5 rounded-[2px]" />
-              <span>EN</span>
-            </button>
-          </div>
+          <LanguageDropdown
+            locale={locale}
+            label={content.languageLabel}
+            onLocaleChange={onLocaleChange}
+            className="h-9 rounded-full border border-red-200 bg-white px-3 text-sm font-semibold text-red-900 shadow-sm transition hover:bg-red-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700"
+          />
         </div>
 
         <button
@@ -136,66 +114,125 @@ export function Navbar({ content, locale, onLocaleChange }: NavbarProps) {
               {link.label}
             </a>
           ))}
-          <div className="mt-2 inline-flex items-center justify-center gap-2 rounded-lg border border-red-200 bg-red-50 p-2 text-sm font-semibold">
-            <span className="text-red-700">{content.languageLabel}</span>
-            <button
-              type="button"
-              className={`inline-flex items-center gap-1 rounded-md px-3 py-1.5 transition ${
-                locale === "nl"
-                  ? "bg-red-700 text-white"
-                  : "text-red-800 hover:bg-white"
-              }`}
-              onClick={() => onLocaleChange("nl")}
-              aria-label="Switch language to Dutch"
-            >
-              <FlagNlIcon className="h-3.5 w-5 rounded-[2px]" />
-              <span>NL</span>
-            </button>
-            <button
-              type="button"
-              className={`inline-flex items-center gap-1 rounded-md px-3 py-1.5 transition ${
-                locale === "en"
-                  ? "bg-red-700 text-white"
-                  : "text-red-800 hover:bg-white"
-              }`}
-              onClick={() => onLocaleChange("en")}
-              aria-label="Switch language to English"
-            >
-              <FlagUkIcon className="h-3.5 w-5 rounded-[2px]" />
-              <span>EN</span>
-            </button>
-          </div>
+          <LanguageDropdown
+            locale={locale}
+            label={content.languageLabel}
+            onLocaleChange={onLocaleChange}
+            fullWidth
+            className="mt-2 h-10 w-full rounded-lg border border-red-200 bg-red-50 px-3 text-sm font-semibold text-red-900 transition hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700"
+          />
         </div>
       </div>
     </header>
   );
 }
 
-interface FlagIconProps {
-  className?: string;
+interface LanguageDropdownProps {
+  locale: Locale;
+  label: string;
+  onLocaleChange: (locale: Locale) => void;
+  className: string;
+  fullWidth?: boolean;
 }
 
-function FlagNlIcon({ className = "h-3.5 w-5" }: FlagIconProps) {
-  return (
-    <svg viewBox="0 0 6 4" className={className} aria-hidden="true">
-      <rect width="6" height="4" fill="#ffffff" />
-      <rect width="6" height="1.333" y="0" fill="#ae1c28" />
-      <rect width="6" height="1.333" y="2.667" fill="#21468b" />
-    </svg>
-  );
-}
+const languageOptions: Array<{ value: Locale; label: string; countryCode: string }> = [
+  { value: "nl", label: "Nederlands", countryCode: "nl" },
+  { value: "en", label: "English", countryCode: "gb" },
+];
 
-function FlagUkIcon({ className = "h-3.5 w-5" }: FlagIconProps) {
+const FLAG_SIZE = 12;
+
+function LanguageDropdown({ locale, label, onLocaleChange, className, fullWidth = false }: LanguageDropdownProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    function handleOutsideClick(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    }
+
+    function handleEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+      }
+    }
+
+    window.addEventListener("mousedown", handleOutsideClick);
+    window.addEventListener("keydown", handleEscape);
+    return () => {
+      window.removeEventListener("mousedown", handleOutsideClick);
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, []);
+
+  const activeLanguage = languageOptions.find((option) => option.value === locale) ?? languageOptions[0];
+
   return (
-    <svg viewBox="0 0 60 30" className={className} aria-hidden="true">
-      <clipPath id="uk-clip">
-        <path d="M0,0 v30 h60 v-30 z" />
-      </clipPath>
-      <path d="M0,0 v30 h60 v-30 z" fill="#012169" />
-      <path d="M0,0 60,30 M60,0 0,30" stroke="#ffffff" strokeWidth="6" clipPath="url(#uk-clip)" />
-      <path d="M0,0 60,30 M60,0 0,30" stroke="#c8102e" strokeWidth="4" clipPath="url(#uk-clip)" />
-      <path d="M30,0 v30 M0,15 h60" stroke="#ffffff" strokeWidth="10" />
-      <path d="M30,0 v30 M0,15 h60" stroke="#c8102e" strokeWidth="6" />
-    </svg>
+    <div ref={dropdownRef} className={`relative ${fullWidth ? "w-full" : ""}`}>
+      <span className="sr-only">{label}</span>
+      <button
+        type="button"
+        aria-label={label}
+        aria-haspopup="listbox"
+        aria-expanded={isOpen}
+        onClick={() => setIsOpen((value) => !value)}
+        className={`${className} inline-flex items-center justify-between gap-2 outline-none`}
+      >
+        <span className="inline-flex items-center gap-1">
+          <CircleFlag
+            countryCode={activeLanguage.countryCode}
+            width={FLAG_SIZE}
+            height={FLAG_SIZE}
+            aria-hidden="true"
+          />
+          <span>{activeLanguage.label}</span>
+        </span>
+        <svg
+          viewBox="0 0 20 20"
+          aria-hidden="true"
+          className={`h-4 w-4 transition-transform ${isOpen ? "rotate-180" : ""}`}
+        >
+          <path d="M5.5 7.5 10 12l4.5-4.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      </button>
+
+      {isOpen ? (
+        <div
+          role="listbox"
+          aria-label={label}
+          className={`absolute z-50 mt-2 overflow-hidden rounded-xl border border-red-200 bg-white shadow-lg ${
+            fullWidth ? "left-0 w-full" : "right-0 w-44"
+          }`}
+        >
+          {languageOptions.map((option) => (
+            <button
+              key={option.value}
+              type="button"
+              role="option"
+              aria-selected={locale === option.value}
+              onClick={() => {
+                onLocaleChange(option.value);
+                setIsOpen(false);
+              }}
+              className={`flex w-full items-center gap-1 px-3 py-2.5 text-left text-sm font-semibold transition ${
+                locale === option.value
+                  ? "bg-red-100 text-red-900"
+                  : "text-red-900 hover:bg-red-50"
+              }`}
+            >
+              <CircleFlag
+                countryCode={option.countryCode}
+                width={FLAG_SIZE}
+                height={FLAG_SIZE}
+                aria-hidden="true"
+              />
+              <span>{option.label}</span>
+            </button>
+          ))}
+        </div>
+      ) : null}
+    </div>
   );
 }
