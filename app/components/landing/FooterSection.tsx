@@ -7,9 +7,9 @@ interface FooterSectionProps {
 export function FooterSection({ content }: FooterSectionProps) {
   return (
     <footer className="border-t border-red-100 bg-white">
-      <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-4 lg:px-8">
-        <div>
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-red-700">Advocatenkantoor Jankie</h3>
+      <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
+        <div className="md:col-span-2 lg:col-span-1">
+          <h3 className="text-lg font-bold tracking-tight text-red-900">Advocatenkantoor Jankie</h3>
           <p className="mt-3 text-sm leading-7 text-red-900/80">{content.legalNote}</p>
         </div>
 
@@ -55,21 +55,21 @@ export function FooterSection({ content }: FooterSectionProps) {
           <h4 className="text-sm font-semibold uppercase tracking-wide text-red-700">
             {content.contactTitle}
           </h4>
-          <ul className="mt-3 space-y-2 text-sm text-red-900/80">
-            <li>
-              <span className="font-semibold">{content.contact.phoneLabel}: </span>
+          <ul className="mt-3 space-y-3 text-sm text-red-900/80">
+            <li className="flex flex-col items-start gap-1">
+              <span className="font-semibold">{content.contact.phoneLabel}:</span>
               <a
                 href={content.contact.phoneHref}
-                className="inline-flex items-center rounded-md border border-red-200 bg-red-50 px-2.5 py-1 font-semibold text-red-800 underline decoration-red-400 decoration-2 underline-offset-2 transition hover:-translate-y-0.5 hover:bg-red-100 hover:text-red-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700"
+                className="inline-flex max-w-full items-center rounded-md border border-red-200 bg-red-50 px-2.5 py-1 font-semibold text-red-800 underline decoration-red-400 decoration-2 underline-offset-2 transition hover:-translate-y-0.5 hover:bg-red-100 hover:text-red-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700"
               >
                 {content.contact.phoneDisplay}
               </a>
             </li>
-            <li>
-              <span className="font-semibold">{content.contact.emailLabel}: </span>
+            <li className="flex flex-col items-start gap-1">
+              <span className="font-semibold">{content.contact.emailLabel}:</span>
               <a
                 href={content.contact.emailHref}
-                className="inline-flex items-center rounded-md border border-red-200 bg-red-50 px-2.5 py-1 font-semibold text-red-800 underline decoration-red-400 decoration-2 underline-offset-2 transition hover:-translate-y-0.5 hover:bg-red-100 hover:text-red-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700"
+                className="inline-flex max-w-full break-all rounded-md border border-red-200 bg-red-50 px-2.5 py-1 font-semibold text-red-800 underline decoration-red-400 decoration-2 underline-offset-2 transition hover:-translate-y-0.5 hover:bg-red-100 hover:text-red-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700"
               >
                 {content.contact.emailValue}
               </a>
@@ -79,7 +79,7 @@ export function FooterSection({ content }: FooterSectionProps) {
           <h5 className="mt-5 text-xs font-semibold uppercase tracking-wide text-red-700">
             {content.socialTitle}
           </h5>
-          <div className="mt-2 flex items-center gap-3">
+          <div className="mt-2 flex flex-wrap items-center gap-3">
             {content.socialLinks.map((link) => (
               <a
                 key={link.href}
