@@ -28,7 +28,7 @@ export function LawFirmLandingPage({ locale }: LawFirmLandingPageProps) {
   const content = landingContent[locale];
 
   return (
-    <main lang={locale} className="min-h-screen bg-white text-red-950">
+    <main lang={locale} className="min-h-screen bg-white text-main-950">
       <Navbar content={content.navbar} locale={locale} onLocaleChange={handleLocaleChange} />
       <HeroSection content={content.hero} />
       <PracticeAreasSection content={content.practiceAreas} />

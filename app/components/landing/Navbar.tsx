@@ -25,24 +25,24 @@ export function Navbar({ content, locale, onLocaleChange }: NavbarProps) {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-red-100 bg-white/95 backdrop-blur">
-      <div className="h-1 bg-linear-to-r from-red-700 via-red-500 to-red-700" aria-hidden="true" />
+    <header className="sticky top-0 z-50 border-b border-main-100 bg-white/95 backdrop-blur">
+      <div className="h-1 bg-linear-to-r from-main-700 via-main-500 to-main-700" aria-hidden="true" />
       <nav
         className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8"
         aria-label="Primary"
       >
         <a
           href="#home"
-          className="inline-flex items-center gap-3 rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700"
+          className="inline-flex items-center gap-3 rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-700"
         >
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-red-700 text-sm font-bold text-white">
+          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-main-700 text-sm font-bold text-white">
             AJ
           </span>
           <span>
-            <span className="block text-base font-extrabold leading-tight tracking-tight text-red-900">
+            <span className="block text-base font-extrabold leading-tight tracking-tight text-main-900">
               {content.brandName}
             </span>
-            <span className="block text-xs font-medium leading-tight text-red-700/90">{content.brandTagline}</span>
+            <span className="block text-xs font-medium leading-tight text-main-700/90">{content.brandTagline}</span>
           </span>
         </a>
 
@@ -51,11 +51,11 @@ export function Navbar({ content, locale, onLocaleChange }: NavbarProps) {
             <a
               key={link.href}
               href={link.href}
-              className="group relative text-sm font-semibold text-red-900 transition hover:text-red-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700"
+              className="group relative text-sm font-semibold text-main-900 transition hover:text-main-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-700"
             >
               {link.label}
               <span
-                className="absolute -bottom-1 left-0 h-0.5 w-full origin-left scale-x-0 bg-red-600 transition-transform duration-200 group-hover:scale-x-100"
+                className="absolute -bottom-1 left-0 h-0.5 w-full origin-left scale-x-0 bg-main-600 transition-transform duration-200 group-hover:scale-x-100"
                 aria-hidden="true"
               />
             </a>
@@ -64,13 +64,13 @@ export function Navbar({ content, locale, onLocaleChange }: NavbarProps) {
             locale={locale}
             label={content.languageLabel}
             onLocaleChange={onLocaleChange}
-            className="h-9 rounded-full border border-red-200 bg-white px-3 text-sm font-semibold text-red-900 shadow-sm transition hover:bg-red-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700"
+            className="h-9 rounded-full border border-main-200 bg-white px-3 text-sm font-semibold text-main-900 shadow-sm transition hover:bg-main-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-700"
           />
         </div>
 
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-red-200 text-red-900 transition hover:bg-red-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700 md:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-main-200 text-main-900 transition hover:bg-main-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-700 md:hidden"
           aria-expanded={isOpen}
           aria-controls="mobile-menu"
           aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
@@ -99,7 +99,7 @@ export function Navbar({ content, locale, onLocaleChange }: NavbarProps) {
 
       <div
         id="mobile-menu"
-        className={`border-t border-red-100 bg-white md:hidden ${
+        className={`border-t border-main-100 bg-white md:hidden ${
           isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         } overflow-hidden transition-all duration-200`}
       >
@@ -108,7 +108,7 @@ export function Navbar({ content, locale, onLocaleChange }: NavbarProps) {
             <a
               key={link.href}
               href={link.href}
-              className="rounded-lg border border-transparent px-3 py-3 text-base font-semibold text-red-900 transition hover:border-red-100 hover:bg-red-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700"
+              className="rounded-lg border border-transparent px-3 py-3 text-base font-semibold text-main-900 transition hover:border-main-100 hover:bg-main-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-700"
               onClick={() => setIsOpen(false)}
             >
               {link.label}
@@ -119,7 +119,7 @@ export function Navbar({ content, locale, onLocaleChange }: NavbarProps) {
             label={content.languageLabel}
             onLocaleChange={onLocaleChange}
             fullWidth
-            className="mt-2 h-10 w-full rounded-lg border border-red-200 bg-red-50 px-3 text-sm font-semibold text-red-900 transition hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700"
+            className="mt-2 h-10 w-full rounded-lg border border-main-200 bg-main-50 px-3 text-sm font-semibold text-main-900 transition hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-700"
           />
         </div>
       </div>
@@ -202,7 +202,7 @@ function LanguageDropdown({ locale, label, onLocaleChange, className, fullWidth 
         <div
           role="listbox"
           aria-label={label}
-          className={`absolute z-50 mt-2 overflow-hidden rounded-xl border border-red-200 bg-white shadow-lg ${
+          className={`absolute z-50 mt-2 overflow-hidden rounded-xl border border-main-200 bg-white shadow-lg ${
             fullWidth ? "left-0 w-full" : "right-0 w-44"
           }`}
         >
@@ -218,8 +218,8 @@ function LanguageDropdown({ locale, label, onLocaleChange, className, fullWidth 
               }}
               className={`flex w-full items-center gap-1 px-3 py-2.5 text-left text-sm font-semibold transition ${
                 locale === option.value
-                  ? "bg-red-100 text-red-900"
-                  : "text-red-900 hover:bg-red-50"
+                  ? "bg-main-100 text-main-900"
+                  : "text-main-900 hover:bg-main-50"
               }`}
             >
               <CircleFlag
