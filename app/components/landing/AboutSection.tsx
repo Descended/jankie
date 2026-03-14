@@ -22,19 +22,19 @@ export function AboutSection({ content }: AboutSectionProps) {
               className="h-28 rounded-xl border border-main-100 bg-cover bg-center shadow-sm sm:h-32"
               style={{
                 backgroundImage:
-                  "url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=1000&q=80')",
+                  "url('https://images.unsplash.com/photo-1589994965851-a8f479c573a9?auto=format&fit=crop&w=1000&q=80')",
               }}
               role="img"
-              aria-label="Lawyer workspace with documents"
+              aria-label="Lawyer writing legal notes"
             />
             <div
               className="h-28 rounded-xl border border-main-100 bg-cover bg-center shadow-sm sm:h-32"
               style={{
                 backgroundImage:
-                  "url('https://images.unsplash.com/photo-1453945619913-79ec89a82c51?auto=format&fit=crop&w=1000&q=80')",
+                  "url('https://images.unsplash.com/photo-1521790361543-f645cf042ec4?auto=format&fit=crop&w=1000&q=80')",
               }}
               role="img"
-              aria-label="Courtroom gavel"
+              aria-label="Professional client meeting"
             />
           </div>
           <div className="rounded-xl border border-main-100 bg-white p-6 shadow-sm">

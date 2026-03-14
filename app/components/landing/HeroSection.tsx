@@ -6,7 +6,7 @@ interface HeroSectionProps {
 
 export function HeroSection({ content }: HeroSectionProps) {
   return (
-    <section id="home" className="border-b border-main-100 bg-gradient-to-b from-white to-main-50/40 scroll-mt-24">
+    <section id="home" className="border-b border-main-100 bg-linear-to-b from-white to-main-50/40 scroll-mt-24">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-10 px-4 py-16 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8 lg:py-24">
         <div className="max-w-2xl space-y-6">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-main-700">
@@ -34,14 +34,34 @@ export function HeroSection({ content }: HeroSectionProps) {
 
         <aside className="w-full max-w-md space-y-4">
           <div
-            className="h-44 rounded-xl border border-main-100 bg-cover bg-center shadow-sm"
+            className="h-52 rounded-xl border border-main-100 bg-cover bg-center shadow-sm"
             style={{
               backgroundImage:
-                "url('https://images.unsplash.com/photo-1589391886645-d51941baf7fb?auto=format&fit=crop&w=1200&q=80')",
+                "url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1400&q=80')",
             }}
             role="img"
-            aria-label="Law books and scales in an office"
+            aria-label="Legal contract review on a desk"
           />
+          <div className="grid grid-cols-2 gap-4">
+            <div
+              className="h-28 rounded-xl border border-main-100 bg-cover bg-center shadow-sm"
+              style={{
+                backgroundImage:
+                  "url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1400&q=80')",
+              }}
+              role="img"
+              aria-label="Professional legal consultation"
+            />
+            <div
+              className="h-28 rounded-xl border border-main-100 bg-cover bg-center shadow-sm"
+              style={{
+                backgroundImage:
+                  "url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=1000&q=80')",
+              }}
+              role="img"
+              aria-label="Law library books"
+            />
+          </div>
           <div className="rounded-xl border border-main-100 bg-white p-6 shadow-sm">
             <h2 className="text-lg font-semibold text-main-950">{content.whyChooseTitle}</h2>
             <ul className="mt-4 space-y-3 text-sm text-main-900/80">
