@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { CircleFlag } from "react-circle-flags";
 import type { Locale, NavbarContent } from "./types";
@@ -28,22 +29,22 @@ export function Navbar({ content, locale, onLocaleChange }: NavbarProps) {
     <header className="sticky top-0 z-50 border-b border-main-100 bg-white/95 backdrop-blur">
       <div className="h-1 bg-linear-to-r from-main-700 via-main-500 to-main-700" aria-hidden="true" />
       <nav
-        className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8"
+        className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8"
         aria-label="Primary"
       >
         <a
           href="#home"
-          className="inline-flex items-center gap-3 rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-700"
+          aria-label={content.brandName}
+          className="inline-flex items-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-700"
         >
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-main-700 text-sm font-bold text-white">
-            AJ
-          </span>
-          <span>
-            <span className="block text-base font-extrabold leading-tight tracking-tight text-main-900">
-              {content.brandName}
-            </span>
-            <span className="block text-xs font-medium leading-tight text-main-700/90">{content.brandTagline}</span>
-          </span>
+          <Image
+            src="/logo.png"
+            alt={content.brandName}
+            width={512}
+            height={500}
+            priority
+            className="h-14 w-auto sm:h-16 md:h-20 lg:h-24"
+          />
         </a>
 
         <div className="hidden items-center gap-6 md:flex">
