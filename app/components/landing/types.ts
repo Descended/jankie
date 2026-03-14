@@ -80,6 +80,7 @@ export interface FooterSocialLink {
 }
 
 export interface FooterContent {
+  brandName: string;
   quickLinksTitle: string;
   quickLinks: ReadonlyArray<FooterLink>;
   legalLinksTitle: string;

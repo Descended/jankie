@@ -35,7 +35,7 @@ export function Navbar({ content, locale, onLocaleChange }: NavbarProps) {
         <a
           href="#home"
           aria-label={content.brandName}
-          className="inline-flex items-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-700"
+          className="inline-flex items-center gap-2 rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-700 sm:gap-3"
         >
           <Image
             src="/logo.png"
@@ -43,8 +43,11 @@ export function Navbar({ content, locale, onLocaleChange }: NavbarProps) {
             width={512}
             height={500}
             priority
-            className="h-14 w-auto sm:h-16 md:h-20 lg:h-24"
+            className="h-12 w-auto sm:h-16 md:h-20 lg:h-24"
           />
+          <span className="max-w-40 text-xs font-semibold leading-tight text-main-900 sm:max-w-none sm:text-sm md:text-base">
+            {content.brandName}
+          </span>
         </a>
 
         <div className="hidden items-center gap-6 md:flex">

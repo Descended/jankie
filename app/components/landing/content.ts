@@ -90,6 +90,7 @@ export const landingContent: Record<Locale, LandingContent> = {
       responseNote: "Wij streven ernaar om binnen 1 werkdag te reageren.",
     },
     footer: {
+      brandName: "Advocatenkantoor Jankie",
       quickLinksTitle: "Snelle links",
       quickLinks: [
         { label: "Home", href: "#home" },
@@ -136,7 +137,7 @@ export const landingContent: Record<Locale, LandingContent> = {
   },
   en: {
     navbar: {
-      brandName: "Advocatenkantoor Jankie",
+      brandName: "Jankie Law Firm",
       brandTagline: "Legal guidance with personal focus",
       links: [
         { label: "Home", href: "#home" },
@@ -147,7 +148,7 @@ export const landingContent: Record<Locale, LandingContent> = {
       languageLabel: "Language",
     },
     hero: {
-      eyebrow: "Advocatenkantoor Jankie",
+      eyebrow: "Jankie Law Firm",
       title: "Experienced legal support in Hoofddorp and the Schiphol region",
       description:
         "We support private and business clients with clear legal advice, practical strategy, and close personal attention.",
@@ -183,9 +184,9 @@ export const landingContent: Record<Locale, LandingContent> = {
       ],
     },
     about: {
-      title: "About Advocatenkantoor Jankie",
+      title: "About Jankie Law Firm",
       description:
-        "Advocatenkantoor Jankie is a law office in Hoofddorp. Public office information states that Mr. S. Jankie has broad experience across legal domains and that the office is registered as a sole proprietorship with the Chamber of Commerce in Amsterdam.",
+        "Jankie Law Firm is a law office in Hoofddorp. Public office information states that Mr. S. Jankie has broad experience across legal domains and that the office is registered as a sole proprietorship with the Chamber of Commerce in Amsterdam.",
       testimonialTitle: "What clients say",
       testimonials: [
         {
@@ -221,6 +222,7 @@ export const landingContent: Record<Locale, LandingContent> = {
       responseNote: "We aim to respond within 1 business day.",
     },
     footer: {
+      brandName: "Jankie Law Firm",
       quickLinksTitle: "Quick links",
       quickLinks: [
         { label: "Home", href: "#home" },
@@ -257,12 +259,12 @@ export const landingContent: Record<Locale, LandingContent> = {
         {
           label: "LinkedIn",
           href: "https://www.linkedin.com/in/soerin-jankie-a7b01b8/",
-          ariaLabel: "Follow Advocatenkantoor Jankie on LinkedIn",
+          ariaLabel: "Follow Jankie Law Firm on LinkedIn",
         },
       ],
       legalNote:
-        "Advocatenkantoor Jankie is based in Hoofddorp. Mr. S. Jankie is registered with the Dutch Bar Association.",
-      copyright: "Advocatenkantoor Jankie. All rights reserved.",
+        "Jankie Law Firm is based in Hoofddorp. Mr. S. Jankie is registered with the Dutch Bar Association.",
+      copyright: "Jankie Law Firm. All rights reserved.",
     },
   },
 };

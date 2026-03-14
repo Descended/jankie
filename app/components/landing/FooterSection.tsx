@@ -9,7 +9,7 @@ export function FooterSection({ content }: FooterSectionProps) {
     <footer className="border-t border-main-100 bg-white">
       <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
         <div className="md:col-span-2 lg:col-span-1">
-          <h3 className="text-lg font-bold tracking-tight text-main-900">Advocatenkantoor Jankie</h3>
+          <h3 className="text-lg font-bold tracking-tight text-main-900">{content.brandName}</h3>
           <p className="mt-3 text-sm leading-7 text-main-900/80">{content.legalNote}</p>
         </div>
 
